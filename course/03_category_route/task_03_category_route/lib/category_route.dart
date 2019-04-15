@@ -4,9 +4,9 @@
 
 import 'package:flutter/material.dart';
 
-// TODO: Check if we need to import anything
+import 'package:task_03_category_route/category.dart';
 
-// TODO: Define any constants
+final Color _backgroundColor = Colors.green[100];
 
 /// Category Route (screen).
 ///
@@ -18,7 +18,7 @@ import 'package:flutter/material.dart';
 class CategoryRoute extends StatelessWidget {
   const CategoryRoute();
 
-  static const _categoryNames = <String>[
+  static const List<String> _categoryNames = <String>[
     'Length',
     'Area',
     'Volume',
@@ -29,7 +29,7 @@ class CategoryRoute extends StatelessWidget {
     'Currency',
   ];
 
-  static const _baseColors = <Color>[
+  static const List<Color> _baseColors = <Color>[
     Colors.teal,
     Colors.orange,
     Colors.pinkAccent,
@@ -42,15 +42,36 @@ class CategoryRoute extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: Create a list of the eight Categories, using the names and colors
-    // from above. Use a placeholder icon, such as `Icons.cake` for each
-    // Category. We'll add custom icons later.
+    List<Category> _categoryList = [];
+    for (int i = 0; i < _categoryNames.length; i++) {
+      _categoryList.add(Category(
+        name: _categoryNames[i],
+        color: _baseColors[i],
+        iconLocation: Icons.cake,
+      ));
+    }
 
-    // TODO: Create a list view of the Categories
-    final listView = Container();
+    final listView = Container(
+      color: _backgroundColor,
+      padding: EdgeInsets.all(8.0),
+      child: ListView.builder(
+        itemCount: 8,
+        itemBuilder: (BuildContext context, int index) => _categoryList[index],
+      ),
+    );
 
-    // TODO: Create an App Bar
-    final appBar = AppBar();
+    final appBar = AppBar(
+      title: Text(
+        "Unit Converter",
+        style: TextStyle(
+          fontSize: 30.0,
+          color: Colors.black,
+        ),
+      ),
+      centerTitle: true,
+      elevation: 0.0,
+      backgroundColor: _backgroundColor,
+    );
 
     return Scaffold(
       appBar: appBar,
