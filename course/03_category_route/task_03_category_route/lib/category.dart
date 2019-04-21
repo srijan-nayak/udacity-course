@@ -58,7 +58,9 @@ class Category extends StatelessWidget {
           splashColor: color,
           // We can use either the () => function() or the () { function(); }
           // syntax.
-          onTap: () => print('I was tapped!'),
+          onTap: () {
+            print('I was tapped!');
+          },
           child: Padding(
             padding: EdgeInsets.all(8.0),
             child: Row(
