@@ -3,6 +3,7 @@
 // found in the LICENSE file.
 
 import 'package:flutter/material.dart';
+import 'package:task_03_category_route/category.dart';
 
 // TODO: Check if we need to import anything
 
@@ -42,15 +43,38 @@ class CategoryRoute extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: Create a list of the eight Categories, using the names and colors
-    // from above. Use a placeholder icon, such as `Icons.cake` for each
-    // Category. We'll add custom icons later.
+    List<Category> categoryList = <Category>[];
+    for (int i = 0; i < _categoryNames.length; i++) {
+      categoryList.add(
+        Category(
+          name: _categoryNames[i],
+          color: _baseColors[i],
+          iconLocation: Icons.cake,
+        ),
+      );
+    }
 
-    // TODO: Create a list view of the Categories
-    final listView = Container();
+    final listView = Container(
+      padding: EdgeInsets.all(8.0),
+      color: Colors.green[100],
+      child: ListView.builder(
+        itemCount: 8,
+        itemBuilder: (context, i) => categoryList[i],
+      ),
+    );
 
-    // TODO: Create an App Bar
-    final appBar = AppBar();
+    final appBar = AppBar(
+      title: Text(
+        "Unit Converter",
+        style: TextStyle(
+          fontSize: 30.0,
+          color: Colors.black,
+        ),
+      ),
+      centerTitle: true,
+      elevation: 0.0,
+      backgroundColor: Colors.green[100],
+    );
 
     return Scaffold(
       appBar: appBar,
