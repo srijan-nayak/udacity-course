@@ -5,6 +5,7 @@
 // To keep your imports tidy, follow the ordering guidelines at
 // https://www.dartlang.org/guides/language/effective-dart/style#ordering
 import 'package:flutter/material.dart';
+
 // @required is defined in the meta.dart package
 import 'package:meta/meta.dart';
 
@@ -48,6 +49,15 @@ class Category extends StatelessWidget {
   /// Navigates to the [ConverterRoute].
   void _navigateToConverter(BuildContext context) {
     // TODO: Using the Navigator, navigate to the [ConverterRoute]
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => ConverterRoute(
+              name: name,
+              color: color,
+              units: units,
+            ),
+      ),
+    );
   }
 
   /// Builds a custom widget that shows [Category] information.
@@ -69,10 +79,7 @@ class Category extends StatelessWidget {
           splashColor: color,
           // We can use either the () => function() or the () { function(); }
           // syntax.
-          // TODO: Update this onTap property to call _navigateToConverter()
-          onTap: () {
-            print('I was tapped!');
-          },
+          onTap: () => _navigateToConverter(context),
           child: Padding(
             padding: EdgeInsets.all(8.0),
             child: Row(
